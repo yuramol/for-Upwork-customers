@@ -1,0 +1,6 @@
+mutation CreateOrder($data: CreateOrderInput!) {
+  createOrder(data: $data) {
+    status
+    message
+  }
+}

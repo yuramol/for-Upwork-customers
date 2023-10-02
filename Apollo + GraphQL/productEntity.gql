@@ -1,0 +1,43 @@
+fragment productEntity on ProductEntity {
+  id
+  attributes {
+    title
+    price
+    priceOld
+    rating
+    discount
+    description
+    video
+    status
+    sku
+    imagePreview {
+      data {
+        ...uploadFileEntity
+      }
+    }
+    reviews {
+      data {
+        ...uploadFileEntity
+      }
+    }
+    productTableDescriptions {
+      id
+      text
+      value
+    }
+    productDescriptions {
+      id
+      title
+      productDescriptionsPost {
+        id
+        title
+        descriptions
+        image {
+          data {
+            ...uploadFileEntity
+          }
+        }
+      }
+    }
+  }
+}

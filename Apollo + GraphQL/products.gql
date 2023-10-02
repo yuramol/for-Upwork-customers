@@ -1,0 +1,15 @@
+query Products($start: Int, $limit: Int, $filters: ProductFiltersInput) {
+  products(filters: $filters, sort: "id:asc", pagination: { start: $start, limit: $limit }) {
+    data {
+      ...productEntity
+    }
+    meta {
+      pagination {
+        total
+        page
+        pageSize
+        pageCount
+      }
+    }
+  }
+}

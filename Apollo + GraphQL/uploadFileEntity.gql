@@ -1,0 +1,10 @@
+fragment uploadFileEntity on UploadFileEntity {
+  id
+  attributes {
+    url
+    width
+    height
+    alternativeText
+    formats
+  }
+}
