@@ -3,7 +3,7 @@ from config.settings import AUTH_USER_MODEL as User
 
 
 # Create your models here.
-class ChessGame(models.Model):
+class Game(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     game_id = models.CharField(max_length=50, primary_key=True)
     event = models.CharField(max_length=200)
@@ -29,7 +29,7 @@ class ChessGame(models.Model):
         ordering = ['-date', '-created_at']
 
 
-class ChessMove(models.Model):
+class Move(models.Model):
     game = models.ForeignKey(ChessGame, on_delete=models.CASCADE)
     move_order_number = models.PositiveIntegerField()
     move_from = models.CharField(max_length=10)
