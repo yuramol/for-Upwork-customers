@@ -2,33 +2,33 @@ import json
 
 from rest_framework import generics
 from django.http import HttpResponse
-from .serializers import ChessGameCreateSerializer, ChessGameListSerializer, ChessMoveSerializer
+from .serializers import GameCreateSerializer, GameListSerializer, MoveSerializer
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import ChessGame, ChessMove
+from .models import Game, Move
 from rest_framework.permissions import IsAuthenticated
 
 
-class ChessGameAPIView(APIView):
+class GameAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, format=None):
         # Получите все записи игр текущего пользователя
-        games = ChessGame.objects.filter(user=request.user).order_by('-date', '-created_at')
-        serializer = ChessGameListSerializer(games, many=True)
+        games = Game.objects.filter(user=request.user).order_by('-date', '-created_at')
+        serializer = GameListSerializer(games, many=True)
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        game_serializer = ChessGameCreateSerializer(data=request.data)
+        game_serializer = GameCreateSerializer(data=request.data)
         moves_data = request.data.get("moves_details", [])
-        moves_serializer = ChessMoveSerializer(data=moves_data, many=True)
+        moves_serializer = MoveSerializer(data=moves_data, many=True)
         if game_serializer.is_valid() and moves_serializer.is_valid():
             user = request.user
             game_instance = game_serializer.save(user=user)
 
             for move_data in moves_serializer.validated_data:
-                ChessMove.objects.create(game=game_instance, **move_data)
+                Move.objects.create(game=game_instance, **move_data)
 
             return Response(game_serializer.data, status=status.HTTP_201_CREATED)
         else:
@@ -41,12 +41,12 @@ class ChessGameAPIView(APIView):
             return Response(errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class ChessGameDetailView(generics.RetrieveAPIView):
-    serializer_class = ChessGameListSerializer
+class GameDetailView(generics.RetrieveAPIView):
+    serializer_class = GameListSerializer
 
     def get_queryset(self):
         user = self.request.user
-        return ChessGame.objects.filter(user=user).order_by('-date', '-created_at')
+        return ""Game.objects.filter(user=user).order_by('-date', '-created_at')
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -56,13 +56,13 @@ class ChessGameDetailView(generics.RetrieveAPIView):
 
 def generate_game_file(request, pk):
     try:
-        game = ChessGame.objects.get(pk=pk)
+        game = Game.objects.get(pk=pk)
         file_content = generate_file(game)
         response = HttpResponse(file_content, content_type='application/octet-stream')
         response['Content-Disposition'] = f'attachment; filename="{game.game_id}.PGN"'
 
         return response
-    except ChessGame.DoesNotExist:
+    except Game.DoesNotExist:
         return HttpResponse(status=404)
 
 
