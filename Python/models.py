@@ -30,7 +30,7 @@ class Game(models.Model):
 
 
 class Move(models.Model):
-    game = models.ForeignKey(ChessGame, on_delete=models.CASCADE)
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
     move_order_number = models.PositiveIntegerField()
     move_from = models.CharField(max_length=10)
     move_to = models.CharField(max_length=10)
