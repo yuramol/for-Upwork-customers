@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'tipsychess.sqlite3',
+        'NAME': BASE_DIR / 'example',
         # 'ENGINE': 'django.db.backends.postgresql',
         # 'NAME': os.environ['DB_NAME'],
         # 'USER': os.environ['DB_USER'],
