@@ -54,7 +54,6 @@ export const BusinessesScreen = () => {
           onRefresh={refetch}
           data={listOfBusinesses}
           refreshing={isLoading}
-          // @ts-ignore
           onEndReached={fetchNextPage}
           onEndReachedThreshold={0.85}
           ListFooterComponent={
