@@ -275,7 +275,6 @@ export const Shop: FC<ShopScreenProps> = ({ route }) => {
       </Box>
       <Select
         hideInput
-        // @ts-ignore
         ref={selectRef}
         title="Sort_by"
         items={ordersType}
@@ -286,7 +285,6 @@ export const Shop: FC<ShopScreenProps> = ({ route }) => {
         iconColor={theme.colors.mainBlack}
         borderColor={theme.colors.greyLight}
         type={isIOS() ? 'radio-with-reset' : 'radio'}
-        // @ts-ignore
         onValueChange={data => setCurrentOrderType(data)}
       />
       {renderCartModal()}
