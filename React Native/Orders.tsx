@@ -10,10 +10,6 @@ export const Orders: FC<OrdersProps> = ({ route }) => {
   const { me } = useMe();
   const { openOrderDetailsModal, renderOrderDetailsModal } = useOrderDetails();
 
-  const notificationTrigger = useCallback((orderId: string) => {
-    openOrderDetailsModal(orderId);
-  }, []);
-
   useNotificationReceiver(
     route?.params?.orderId,
     route?.params?.messageId,
