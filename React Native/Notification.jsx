@@ -2,7 +2,6 @@ import React from 'react';
 import { TouchableWithoutFeedback } from 'react-native';
 import styled from 'styled-components';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { shape, string, oneOf } from 'prop-types';
 import LinearGradient from 'react-native-linear-gradient';
 import { hideMessage } from 'react-native-flash-message';
 import { useSafeArea } from 'react-native-safe-area-context';
@@ -113,12 +112,4 @@ export const Notification = ({
       )}
     </TouchableWithoutFeedback>
   );
-};
-
-Notification.propTypes = {
-  message: shape({
-    message: string.isRequired,
-    description: string,
-    type: oneOf(['success', 'info', 'error', 'successRectangular']),
-  }).isRequired,
 };
