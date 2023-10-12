@@ -20,7 +20,6 @@ interface StatusBarManagerType {
 }
 
 export const Home: FC<HomeScreenProps> = ({ route }) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
   const [imageUri, setImageUri] = useState<string>('');
   const [name, setName] = useState<string>('');
   const addressId = route?.params?.addressId;
@@ -34,7 +33,6 @@ export const Home: FC<HomeScreenProps> = ({ route }) => {
       });
     }
   }, []);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
   const { data, loading: loadingName } = useQuery(GET_ME_QUERY, {
     onCompleted: res => {
       setName(`${res.me?.patient?.firstName}`);
