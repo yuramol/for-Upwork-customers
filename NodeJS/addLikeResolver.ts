@@ -12,7 +12,6 @@ export const addLikeResolver = async (parent, args: Args, context) => {
       id: articleId,
     },
     populate: {
-      // @ts-ignore
       likedUsers: {
         select: ['id'],
         where: {
