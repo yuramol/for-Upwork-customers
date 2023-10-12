@@ -49,7 +49,6 @@ export const ChatDialog: FC<ChatDialogProps> = ({
       ?.sendMessage(message, {
         userId: me?.id,
       })
-      .catch(err => console.log('debug > err===', err))
       .finally(() => setLoadingText(false));
 
     setMessage('');
