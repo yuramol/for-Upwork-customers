@@ -63,7 +63,6 @@ export const ChatDialog: FC<ChatDialogProps> = ({
           return chatChannel?.sendMessage(
             {
               contentType: type,
-              // @ts-ignore
               media: BufferLib.Buffer.from(data, 'base64'),
             },
             { userId: (me as IMe).id, fileName: name },
