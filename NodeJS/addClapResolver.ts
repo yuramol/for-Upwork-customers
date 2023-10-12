@@ -12,7 +12,6 @@ export const addClapResolver = async (parent, args: Args, context) => {
       id: articleId,
     },
     populate: {
-      // @ts-ignore
       clappedUsers: {
         select: ['id'],
         where: {
