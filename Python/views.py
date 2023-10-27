@@ -14,7 +14,6 @@ class GameAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, format=None):
-        # Получите все записи игр текущего пользователя
         games = Game.objects.filter(user=request.user).order_by('-date', '-created_at')
         serializer = GameListSerializer(games, many=True)
         return Response(serializer.data)
